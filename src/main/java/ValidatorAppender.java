@@ -14,12 +14,14 @@ import java.util.*;
 /**
  * Created by kevinkim on 2016-07-07.
  */
-public class ValidatorAppender extends FileAppender {
-        ArrayList<String> eventsList = new ArrayList();
+// note: class name need not match the @Plugin name.
+public class ValidatorAppender extends AppenderSkeleton {
+
+        private ArrayList<String> eventsList = new ArrayList();
 
         //TODO get path from properties file
-        Path logPath = Paths.get("C:\\Users\\kevinkim\\src\\ValidatorAppender\\log\\log.txt");
-        Multimap<String, String> metricsMap = HashMultimap.create();
+        private Path logPath = Paths.get("C:\\Users\\kevinkim\\src\\ValidatorAppender\\log\\log.txt");
+        private Multimap<String, String> metricsMap = HashMultimap.create();
 
 
         // Whenever log append is used store event information

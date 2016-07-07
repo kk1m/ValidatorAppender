@@ -9,25 +9,23 @@ public class PoC {
 
 
     public static void main(String []args) throws IOException {
-        Logger l = Logger.getLogger("PoC");
 
-        //Takes the log event as a ("key" + value) and store in logfile
+        //=======To Use the "validator" logger==========
+        Logger valLog = Logger.getLogger("validatorLog");
         ValidatorAppender app = new ValidatorAppender();
+        valLog.addAppender(app);
+        //===============================================
 
-        //Current usage method requires to add appender
-        //TODO create a custom appender module
-        l.addAppender(app);
+        valLog.debug("RDD1.count " + 100);
+        valLog.debug("RDD1.count " + 100);
+        valLog.debug("RDD1.count " + 111);
 
-        l.warn("RDD1.count " + 100);
-        l.warn("RDD1.count " + 100);
-        l.warn("RDD1.count " + 111);
+        valLog.debug("RDD2.count " + 2000);
+        valLog.debug("RDD2.count " + 2000);
 
-        l.warn("RDD2.count " + 2000);
-        l.warn("RDD2.count " + 2000);
-
-        l.warn("RDD3.count " + 300);
-        l.warn("RDD3.count " + 300);
-        l.trace("RDD3.count " + 301);
+        valLog.debug("RDD3.count " + 300);
+        valLog.debug("RDD3.count " + 300);
+        valLog.debug("RDD3.count " + 301);
 
         //Validate specific metric labeled by key "RDD1.count"
         app.validateMetric("RDD1.count");
