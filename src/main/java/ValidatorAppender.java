@@ -18,7 +18,7 @@ public class ValidatorAppender extends FileAppender {
         ArrayList<String> eventsList = new ArrayList();
 
         //TODO get path from properties file
-        Path logPath = Paths.get("C:\\Users\\kevinkim\\src\\Log4jPoC\\log\\log.txt");
+        Path logPath = Paths.get("C:\\Users\\kevinkim\\src\\ValidatorAppender\\log\\log.txt");
         Multimap<String, String> metricsMap = HashMultimap.create();
 
 
