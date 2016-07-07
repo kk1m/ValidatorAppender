@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$MAVEN_REPOSITORY$/log4j/log4j/1.2.16/1.2.16.iml" filepath="$MAVEN_REPOSITORY$/log4j/log4j/1.2.16/1.2.16.iml" />
-      <module fileurl="file://$PROJECT_DIR$/PoC_ValidatorAppender.iml" filepath="$PROJECT_DIR$/PoC_ValidatorAppender.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ValidatorAppender.iml" filepath="$PROJECT_DIR$/ValidatorAppender.iml" />
     </modules>
   </component>
 </project>
