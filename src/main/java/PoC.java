@@ -7,7 +7,7 @@ import java.io.IOException;
  */
 public class PoC {
 
-
+    //Example of using the SparkValidator
     public static void main(String []args) throws IOException {
 
         //=======To Use the "validator" logger==========
@@ -18,10 +18,10 @@ public class PoC {
 
         valLog.debug("RDD1.count " + 100);
         valLog.debug("RDD1.count " + 100);
-        valLog.debug("RDD1.count " + 111);
+        valLog.debug("RDD1.count " + 100);
 
         valLog.debug("RDD2.count " + 2000);
-        valLog.debug("RDD2.count " + 2000);
+        valLog.debug("RDD2.count " + 2001);
 
         valLog.debug("RDD3.count " + 300);
         valLog.debug("RDD3.count " + 300);
