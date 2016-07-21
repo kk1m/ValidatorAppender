@@ -1,3 +1,5 @@
+package validatorappender;
+
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import org.apache.log4j.AppenderSkeleton;
