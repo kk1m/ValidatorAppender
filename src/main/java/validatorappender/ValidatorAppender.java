@@ -7,9 +7,7 @@ import org.apache.log4j.FileAppender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.spi.LoggingEvent;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -24,6 +22,7 @@ public class ValidatorAppender extends AppenderSkeleton {
         private Logger logger = Logger.getLogger("validatorLog"); //Defining the Logger
         private FileAppender appender = (FileAppender)logger.getAppender("validator");
         private Path logPath = Paths.get(appender.getFile());
+        private String logPathStr = appender.getFile();
         private Multimap<String, String> metricsMap = HashMultimap.create();
         private Multimap<String, String> timestampMap = HashMultimap.create();
 
@@ -43,16 +42,26 @@ public class ValidatorAppender extends AppenderSkeleton {
         }
 
          // Parse log file, Check consistency for specific Key named "label"
-        public void validateMetric(String label) throws IOException {
+
+         public void validateMetric(String label) throws IOException {
             System.out.println("=== Validating " + label + " logged Metrics ===");
-            String key,value,timestamp;
-            for (String line : Files.readAllLines(logPath)) {
-                key = line.split(" ")[0];
-                value = line.split(" ")[1];
-                timestamp = line.split(" ")[3];
-                metricsMap.put(key,value);
-                timestampMap.put(value,timestamp);
-            }
+             String key,value,timestamp;
+             try {
+                 File file = new File(logPathStr);
+                 FileReader fileReader = new FileReader(file);
+                 BufferedReader bufferedReader = new BufferedReader(fileReader);
+                 String line;
+                 while ((line = bufferedReader.readLine()) != null) {
+                     key = line.split(" ")[0];
+                     value = line.split(" ")[1];
+                     timestamp = line.split(" ")[3];
+                     metricsMap.put(key,value);
+                     timestampMap.put(value,timestamp);
+                 }
+                 fileReader.close();
+             } catch (IOException e) {
+                 e.printStackTrace();
+             }
 
             Collection results = metricsMap.get(label);
             Collection timestamps;
@@ -74,13 +83,23 @@ public class ValidatorAppender extends AppenderSkeleton {
         // Parse log file, Check consistency for each Keys
         public void validateAll() throws IOException {
             System.out.println("=== Validate All logged Metrics ===");
+
             String key,value,timestamp;
-            for (String line : Files.readAllLines(logPath)) {
-                key = line.split(" ")[0];
-                value = line.split(" ")[1];
-                timestamp = line.split(" ")[3];
-                metricsMap.put(key,value);
-                timestampMap.put(value,timestamp);
+            try {
+                File file = new File(logPathStr);
+                FileReader fileReader = new FileReader(file);
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    key = line.split(" ")[0];
+                    value = line.split(" ")[1];
+                    timestamp = line.split(" ")[3];
+                    metricsMap.put(key,value);
+                    timestampMap.put(value,timestamp);
+                }
+                fileReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
             Collection timestamps;

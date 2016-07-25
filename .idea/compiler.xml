@@ -24,11 +24,13 @@
         <processorPath useClasspath="true" />
         <module name="Log4jPoC" />
         <module name="PoC_ValidatorAppender" />
+        <module name="ValidatorAppender" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Log4jPoC" target="1.5" />
       <module name="PoC_ValidatorAppender" target="1.5" />
+      <module name="ValidatorAppender" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

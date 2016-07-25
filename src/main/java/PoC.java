@@ -30,7 +30,7 @@ public class PoC {
         valLog.debug("RDD3.count " + 301);
 
         //Validate specific metric labeled by key "RDD1.count"
-        app.validateMetric("RDD1.count");
+        //app.validateMetric("RDD1.count");
 
         //Validate all metrics
         app.validateAll();
