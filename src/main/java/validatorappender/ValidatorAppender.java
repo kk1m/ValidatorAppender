@@ -21,7 +21,6 @@ public class ValidatorAppender extends AppenderSkeleton {
         private ArrayList<String> eventsList = new ArrayList();
         private Logger logger = Logger.getLogger("validatorLog"); //Defining the Logger
         private FileAppender appender = (FileAppender)logger.getAppender("validator");
-        private Path logPath = Paths.get(appender.getFile());
         private String logPathStr = appender.getFile();
         private Multimap<String, String> metricsMap = HashMultimap.create();
         private Multimap<String, String> timestampMap = HashMultimap.create();
